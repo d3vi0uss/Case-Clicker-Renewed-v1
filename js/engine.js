@@ -46,7 +46,78 @@ function levelCheck() {
   }
 }
 
-function openCase() {
+function openCase(caseIndex = 0) {
+  const selectedCase = cases[caseIndex];
+
+  if (game.money < selectedCase.price)
+    return alert("Not enough money!");
+
+  game.money -= selectedCase.price;
+  game.casesOpened++;
+
+  const roll = Math.random() * 100;
+  let cumulative = 0;
+  let chosenRarity;
+
+  for (let rarity in rarities) {
+    cumulative += rarities[rarity].chance + game.luck * 0.05;
+    if (roll <= cumulative) {
+      chosenRarity = rarity;
+      break;
+    }
+  }
+
+  const possibleSkins = selectedCase.skins.filter(
+    s => s.rarity === chosenRarity
+  );
+
+  const skin =
+    possibleSkins[Math.floor(Math.random() * possibleSkins.length)];
+
+  const float = Math.random();
+  let wear;
+
+  if (float < 0.07) wear = "Factory New";
+  else if (float < 0.15) wear = "Minimal Wear";
+  else if (float < 0.38) wear = "Field-Tested";
+  else if (float < 0.45) wear = "Well-Worn";
+  else wear = "Battle-Scarred";
+
+  const statTrak = Math.random() < 0.1;
+
+  const value =
+    Math.floor(
+      skin.base *
+        rarities[skin.rarity].multiplier *
+        (1 + (1 - float))
+    ) + (statTrak ? 50 : 0);
+
+  const newItem = {
+    name: skin.name,
+    rarity: skin.rarity,
+    float: float.toFixed(4),
+    wear,
+    statTrak,
+    value
+  };
+
+  game.inventory.push(newItem);
+
+  if (value > game.mostValuable)
+    game.mostValuable = value;
+
+  document.getElementById("caseResult").innerHTML = `
+    <div class="${skin.rarity}">
+      <h3>${statTrak ? "StatTrak™ " : ""}${skin.name}</h3>
+      <p>${wear} (${float.toFixed(4)})</p>
+      <p>Value: $${value}</p>
+    </div>
+  `;
+
+  updateUI();
+  renderInventory();
+  saveGame();
+}
   if (game.money < 50) return alert("Not enough money!");
   game.money -= 50;
   game.casesOpened++;
