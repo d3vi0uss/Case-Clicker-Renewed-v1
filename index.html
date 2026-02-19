@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Case Clicker Renewed</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
 
+<div class="sidebar">
+  <h1>Case Clicker Renewed</h1>
+  <button onclick="showPage('click')">Click</button>
+  <button onclick="showPage('cases')">Cases</button>
+  <button onclick="showPage('inventory')">Inventory</button>
+  <button onclick="showPage('stats')">Stats</button>
+</div>
+
+<div class="main">
+
+  <div id="clickPage" class="page">
+    <h2>Click For Money</h2>
+    <h3 id="moneyDisplay">$0</h3>
+    <button class="bigButton" onclick="clickMoney()">CLICK</button>
+    <p>Level: <span id="levelDisplay">1</span></p>
+    <p>XP: <span id="xpDisplay">0</span></p>
+    <p>Luck: <span id="luckDisplay">0%</span></p>
+  </div>
+
+  <div id="casesPage" class="page hidden">
+    <h2>Starter Case</h2>
+    <button onclick="openCase()">Open ($50)</button>
+    <div id="caseResult"></div>
+  </div>
+
+  <div id="inventoryPage" class="page hidden">
+    <h2>Inventory</h2>
+    <div id="inventoryGrid"></div>
+  </div>
+
+  <div id="statsPage" class="page hidden">
+    <h2>Stats</h2>
+    <p>Total Earned: <span id="totalEarned"></span></p>
+    <p>Cases Opened: <span id="casesOpened"></span></p>
+    <p>Most Valuable: <span id="mostValuable"></span></p>
+  </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+
+</body>
+</html>
