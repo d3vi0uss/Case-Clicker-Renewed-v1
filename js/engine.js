@@ -123,7 +123,7 @@ function renderInventory() {
   let grid = document.getElementById("inventoryGrid");
   grid.innerHTML = "";
 
-  game.inventory.forEach(item => {
+  game.inventory.forEach((item, index) => {
     let div = document.createElement("div");
     div.className = "itemCard " + item.rarity;
 
@@ -131,7 +131,8 @@ function renderInventory() {
       <strong>${item.statTrak ? "StatTrak™ " : ""}${item.name}</strong><br>
       ${item.wear}<br>
       Float: ${item.float}<br>
-      $${item.value}
+      Value: $${item.value}<br>
+      <button onclick="sellItem(${index})">Sell</button>
     `;
 
     grid.appendChild(div);
@@ -150,3 +151,16 @@ function updateUI() {
 
 loadGame();
 renderInventory();
+
+function sellItem(index) {
+  const item = game.inventory[index];
+
+  game.money += item.value;
+  game.totalEarned += item.value;
+
+  game.inventory.splice(index, 1);
+
+  updateUI();
+  renderInventory();
+  saveGame();
+}
