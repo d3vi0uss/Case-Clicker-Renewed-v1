@@ -118,7 +118,6 @@ function openCase(caseIndex = 0) {
   renderInventory();
   saveGame();
 }
-}
 
 function renderInventory() {
   let grid = document.getElementById("inventoryGrid");
@@ -137,7 +136,6 @@ function renderInventory() {
 
     grid.appendChild(div);
   });
-}
 }
 
 function updateUI() {
