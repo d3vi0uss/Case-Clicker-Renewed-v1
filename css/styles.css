@@ -75,3 +75,17 @@ body {
 .rare { border-color: blue; }
 .epic { border-color: purple; }
 .legendary { border-color: gold; }
+
+.itemCard button {
+  margin-top: 5px;
+  padding: 5px;
+  background: orange;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.itemCard button:hover {
+  background: #ff9900;
+}
