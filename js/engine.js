@@ -123,16 +123,21 @@ function openCase(caseIndex = 0) {
 function renderInventory() {
   let grid = document.getElementById("inventoryGrid");
   grid.innerHTML = "";
+
   game.inventory.forEach(item => {
     let div = document.createElement("div");
     div.className = "itemCard " + item.rarity;
+
     div.innerHTML = `
-      <strong>${item.name}</strong><br>
+      <strong>${item.statTrak ? "StatTrak™ " : ""}${item.name}</strong><br>
+      ${item.wear}<br>
       Float: ${item.float}<br>
       $${item.value}
     `;
+
     grid.appendChild(div);
   });
+}
 }
 
 function updateUI() {
