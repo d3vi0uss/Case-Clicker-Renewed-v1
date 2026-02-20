@@ -89,3 +89,9 @@ body {
 .itemCard button:hover {
   background: #ff9900;
 }
+
+#caseList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  gap: 15px;
+}
