@@ -403,7 +403,7 @@ function marketTick() {
 
   const demand = game.marketDemand[item.name] || 0;
 
-  const buyChance = 0.5 + demand * 0.05;
+  const buyChance = 0.6 + demand * 0.1;
 
   if (Math.random() < buyChance) {
 
