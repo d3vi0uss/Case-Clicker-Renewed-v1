@@ -361,6 +361,12 @@ function renderMarket() {
 function buyItem(index) {
   const item = game.marketListings[index];
 
+  if (!game.marketDemand[item.name]) {
+  game.marketDemand[item.name] = 0;
+}
+
+game.marketDemand[item.name] += 1;
+
   if (game.money < item.price)
     return alert("Not enough money!");
 
@@ -386,3 +392,31 @@ function buyItem(index) {
   renderMarket();
   saveGame();
 }
+
+// ---------- LIVE MARKET ENGINE ----------
+
+function marketTick() {
+  if (game.marketListings.length === 0) return;
+
+  const randomIndex = Math.floor(Math.random() * game.marketListings.length);
+  const item = game.marketListings[randomIndex];
+
+  const demand = game.marketDemand[item.name] || 0;
+
+  const buyChance = 0.2 + demand * 0.05;
+
+  if (Math.random() < buyChance) {
+
+    if (item.seller === "player") {
+      game.money += item.price;
+    }
+
+    game.marketListings.splice(randomIndex, 1);
+
+    renderMarket();
+    updateUI();
+    saveGame();
+  }
+}
+
+setInterval(marketTick, 5000);
