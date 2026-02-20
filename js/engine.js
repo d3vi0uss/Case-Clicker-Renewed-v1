@@ -30,6 +30,10 @@ function showPage(page) {
   if (page === "casino") {
   updateBJMoney();
 }
+
+  if (page === "market") {
+  renderMarket();
+}
 }
 
 function clickMoney() {
