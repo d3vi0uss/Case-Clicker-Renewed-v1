@@ -164,3 +164,21 @@ function sellItem(index) {
   renderInventory();
   saveGame();
 }
+
+function renderCases() {
+  const container = document.getElementById("caseList");
+  container.innerHTML = "";
+
+  cases.forEach((c, index) => {
+    const div = document.createElement("div");
+    div.className = "itemCard";
+
+    div.innerHTML = `
+      <strong>${c.name}</strong><br>
+      Price: $${c.price}<br>
+      <button onclick="openCase(${index})">Open</button>
+    `;
+
+    container.appendChild(div);
+  });
+}
