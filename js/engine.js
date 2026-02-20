@@ -157,6 +157,7 @@ function updateUI() {
 loadGame();
 renderInventory();
 renderCases();
+renderMarket();
 
 function sellItem(index) {
   const item = game.inventory[index];
