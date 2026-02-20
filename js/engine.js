@@ -30,6 +30,9 @@ function showPage(page) {
 
   if (page === "casino") {
   updateBJMoney();
+    if (page === "casino") {
+  updateBJMoney();
+  updateDiceMoney();
 }
 
   if (page === "market") {
