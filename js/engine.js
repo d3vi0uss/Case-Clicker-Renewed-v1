@@ -5,6 +5,7 @@ let game = {
   level: 1,
   luck: 0,
   inventory: [],
+  marketListings: [],
   casesOpened: 0,
   mostValuable: 0,
   username: ""
