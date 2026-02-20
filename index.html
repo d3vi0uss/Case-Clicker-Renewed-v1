@@ -73,6 +73,25 @@
   <div id="marketListings"></div>
 </div>
 
+  <hr>
+
+<h3>🎲 Dice</h3>
+
+<p>Your Money: $<span id="diceMoney">0</span></p>
+
+<input type="number" id="diceBet" placeholder="Bet amount">
+
+<select id="diceMultiplier">
+  <option value="2">2x (50% chance)</option>
+  <option value="3">3x (33% chance)</option>
+  <option value="5">5x (20% chance)</option>
+  <option value="10">10x (10% chance)</option>
+</select>
+
+<button onclick="rollDice()">Roll</button>
+
+<p id="diceResult"></p>
+
 </div>
 
 <script src="js/data.js"></script>
