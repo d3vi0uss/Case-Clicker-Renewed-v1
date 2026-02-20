@@ -327,7 +327,7 @@ function generateBotListings() {
 
 const supplyFactor = 1 - duplicates * 0.05;
 
-const price = Math.floor(randomSkin.base * fluctuation * supplyFactor);
+let price = Math.floor(randomSkin.base * fluctuation * supplyFactor);
 
     game.marketListings.push({
       name: randomSkin.name,
