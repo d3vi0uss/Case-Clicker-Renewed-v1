@@ -420,3 +420,37 @@ function marketTick() {
 }
 
 setInterval(marketTick, 5000);
+
+
+// ---------- DICE GAME ----------
+
+function updateDiceMoney() {
+  document.getElementById("diceMoney").innerText = game.money;
+}
+
+function rollDice() {
+  const bet = parseInt(document.getElementById("diceBet").value);
+  const multiplier = parseInt(document.getElementById("diceMultiplier").value);
+
+  if (!bet || bet <= 0) return alert("Invalid bet.");
+  if (bet > game.money) return alert("Not enough money.");
+
+  game.money -= bet;
+
+  const winChance = 1 / multiplier;
+
+  if (Math.random() < winChance) {
+    const winnings = bet * multiplier;
+    game.money += winnings;
+    document.getElementById("diceResult").innerText =
+      "🎉 You won $" + winnings + "!";
+  } else {
+    document.getElementById("diceResult").innerText =
+      "❌ You lost $" + bet;
+  }
+
+  updateUI();
+  updateBJMoney();   // keeps blackjack money synced
+  updateDiceMoney();
+  saveGame();
+}
