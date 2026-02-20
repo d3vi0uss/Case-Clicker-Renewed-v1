@@ -166,13 +166,19 @@ renderMarket();
 function sellItem(index) {
   const item = game.inventory[index];
 
-  game.money += item.value;
-  game.totalEarned += item.value;
+  const sellPrice = Math.floor(item.value * (0.9 + Math.random() * 0.2));
+
+  game.marketListings.push({
+    name: item.name,
+    rarity: item.rarity,
+    price: sellPrice,
+    seller: "player"
+  });
 
   game.inventory.splice(index, 1);
 
-  updateUI();
   renderInventory();
+  renderMarket();
   saveGame();
 }
 
