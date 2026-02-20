@@ -25,6 +25,10 @@ function loadGame() {
 function showPage(page) {
   document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
   document.getElementById(page + "Page").classList.remove("hidden");
+
+  if (page === "casino") {
+  updateBJMoney();
+}
 }
 
 function clickMoney() {
