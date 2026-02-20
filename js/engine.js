@@ -296,3 +296,71 @@ function updateBJDisplay() {
   document.getElementById("dealerHand").innerText =
     bjGame.dealer.join(", ") + " (" + calculateHand(bjGame.dealer) + ")";
 }
+
+// ---------- MARKET SYSTEM ----------
+
+function generateBotListings() {
+  game.marketListings = [];
+
+  for (let i = 0; i < 10; i++) {
+    const randomCase = cases[Math.floor(Math.random() * cases.length)];
+    const randomSkin =
+      randomCase.skins[Math.floor(Math.random() * randomCase.skins.length)];
+
+    const fluctuation = 0.8 + Math.random() * 0.4;
+
+    const price = Math.floor(randomSkin.base * fluctuation);
+
+    game.marketListings.push({
+      name: randomSkin.name,
+      rarity: randomSkin.rarity,
+      price: price
+    });
+  }
+
+  renderMarket();
+  saveGame();
+}
+
+function renderMarket() {
+  const container = document.getElementById("marketListings");
+  container.innerHTML = "";
+
+  game.marketListings.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "itemCard " + item.rarity;
+
+    div.innerHTML = `
+      <strong>${item.name}</strong><br>
+      Price: $${item.price}<br>
+      <button onclick="buyItem(${index})">Buy</button>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+function buyItem(index) {
+  const item = game.marketListings[index];
+
+  if (game.money < item.price)
+    return alert("Not enough money!");
+
+  game.money -= item.price;
+
+  game.inventory.push({
+    name: item.name,
+    rarity: item.rarity,
+    float: (Math.random()).toFixed(4),
+    wear: "Market Purchased",
+    statTrak: false,
+    value: item.price
+  });
+
+  game.marketListings.splice(index, 1);
+
+  updateUI();
+  renderInventory();
+  renderMarket();
+  saveGame();
+}
