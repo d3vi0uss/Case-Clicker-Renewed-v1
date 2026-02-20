@@ -183,3 +183,111 @@ function renderCases() {
     container.appendChild(div);
   });
 }
+
+// ---------- BLACKJACK SYSTEM ----------
+
+let bjGame = {
+  active: false,
+  bet: 0,
+  player: [],
+  dealer: []
+};
+
+function updateBJMoney() {
+  document.getElementById("bjMoney").innerText = "$" + game.money;
+}
+
+function drawCard() {
+  const card = Math.floor(Math.random() * 13) + 1;
+  return card > 10 ? 10 : card;
+}
+
+function calculateHand(hand) {
+  let total = 0;
+  let aces = 0;
+
+  hand.forEach(card => {
+    if (card === 1) {
+      aces++;
+      total += 11;
+    } else {
+      total += card;
+    }
+  });
+
+  while (total > 21 && aces > 0) {
+    total -= 10;
+    aces--;
+  }
+
+  return total;
+}
+
+function startBlackjack() {
+  const betInput = document.getElementById("bjBet").value;
+  const bet = parseInt(betInput);
+
+  if (!bet || bet <= 0) return alert("Enter valid bet");
+  if (bet > game.money) return alert("Not enough money");
+
+  game.money -= bet;
+  bjGame.bet = bet;
+  bjGame.player = [drawCard(), drawCard()];
+  bjGame.dealer = [drawCard(), drawCard()];
+  bjGame.active = true;
+
+  updateBJDisplay();
+  updateUI();
+  updateBJMoney();
+  saveGame();
+}
+
+function hit() {
+  if (!bjGame.active) return;
+
+  bjGame.player.push(drawCard());
+
+  if (calculateHand(bjGame.player) > 21) {
+    endBlackjack("Bust! You lose.");
+  }
+
+  updateBJDisplay();
+}
+
+function stand() {
+  if (!bjGame.active) return;
+
+  while (calculateHand(bjGame.dealer) < 17) {
+    bjGame.dealer.push(drawCard());
+  }
+
+  const playerTotal = calculateHand(bjGame.player);
+  const dealerTotal = calculateHand(bjGame.dealer);
+
+  if (dealerTotal > 21 || playerTotal > dealerTotal) {
+    game.money += bjGame.bet * 2;
+    endBlackjack("You win!");
+  } else if (playerTotal === dealerTotal) {
+    game.money += bjGame.bet;
+    endBlackjack("Push.");
+  } else {
+    endBlackjack("Dealer wins.");
+  }
+
+  updateUI();
+  updateBJMoney();
+  saveGame();
+}
+
+function endBlackjack(message) {
+  bjGame.active = false;
+  document.getElementById("bjResult").innerText = message;
+}
+
+function updateBJDisplay() {
+  document.getElementById("playerHand").innerText =
+    bjGame.player.join(", ") + " (" + calculateHand(bjGame.player) + ")";
+
+  document.getElementById("dealerHand").innerText =
+    bjGame.dealer.join(", ") + " (" + calculateHand(bjGame.dealer) + ")";
+}
