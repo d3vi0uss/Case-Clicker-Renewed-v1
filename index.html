@@ -44,6 +44,28 @@
     <p>Most Valuable: <span id="mostValuable"></span></p>
   </div>
 
+  <div id="casinoPage" class="page hidden">
+  <h2>Blackjack</h2>
+
+  <p>Money: <span id="bjMoney"></span></p>
+
+  <input type="number" id="bjBet" placeholder="Enter Bet" />
+
+  <br><br>
+
+  <button onclick="startBlackjack()">Start</button>
+  <button onclick="hit()">Hit</button>
+  <button onclick="stand()">Stand</button>
+
+  <h3>Your Hand:</h3>
+  <p id="playerHand"></p>
+
+  <h3>Dealer Hand:</h3>
+  <p id="dealerHand"></p>
+
+  <h3 id="bjResult"></h3>
+</div>
+
 </div>
 
 <script src="js/data.js"></script>
