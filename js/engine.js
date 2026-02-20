@@ -6,6 +6,7 @@ let game = {
   luck: 0,
   inventory: [],
   marketListings: [],
+  marketDemand: {},
   casesOpened: 0,
   mostValuable: 0,
   username: ""
