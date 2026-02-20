@@ -359,14 +359,18 @@ function buyItem(index) {
 
   game.money -= item.price;
 
-  game.inventory.push({
-    name: item.name,
-    rarity: item.rarity,
-    float: (Math.random()).toFixed(4),
-    wear: "Market Purchased",
-    statTrak: false,
-    value: item.price
-  });
+  if (item.seller === "player") {
+    game.money += item.price; 
+  } else {
+    game.inventory.push({
+      name: item.name,
+      rarity: item.rarity,
+      float: (Math.random()).toFixed(4),
+      wear: "Market Purchased",
+      statTrak: false,
+      value: item.price
+    });
+  }
 
   game.marketListings.splice(index, 1);
 
