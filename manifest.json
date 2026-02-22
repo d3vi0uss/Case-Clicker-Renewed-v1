@@ -1,0 +1,15 @@
+{
+  "name": "Case Clicker Renewed",
+  "short_name": "CCR",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0c0c12",
+  "theme_color": "#7a5cff",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='22' fill='%230c0c12'/%3E%3Ccircle cx='64' cy='64' r='38' fill='%237a5cff'/%3E%3Cpath d='M32 64h64' stroke='%23fff' stroke-width='8'/%3E%3C/svg%3E",
+      "sizes": "128x128",
+      "type": "image/svg+xml"
+    }
+  ]
+}
