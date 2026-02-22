@@ -1,0 +1,1 @@
+export default class MathUtils{constructor(config={}){this.config=config}init(){}update(){}destroy(){}clamp(v,a,b){return Math.min(b,Math.max(a,v))}lerp(a,b,t){return a+(b-a)*t}triangular(center=.25){const u=Math.random(),v=Math.random();return this.clamp((u+v)/2*center*2,0,1)}}

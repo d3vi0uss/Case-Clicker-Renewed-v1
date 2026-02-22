@@ -1,0 +1,1 @@
+export default class EventBus{constructor(config={}){this.config=config;this.map=new Map()}init(){}update(){}destroy(){this.map.clear()}on(e,cb){(this.map.get(e)||this.map.set(e,[]).get(e)).push(cb)}emit(e,p){(this.map.get(e)||[]).forEach(f=>f(p))}}

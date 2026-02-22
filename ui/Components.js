@@ -1,0 +1,1 @@
+export default class Components{constructor(config={}){}init(){}update(){}destroy(){}stat(k,v){return `<div class='panel'><div class='muted'>${k}</div><div class='num'>${v}</div></div>`}btn(c,t,a=''){return `<button class='${c}' ${a}>${t}</button>`}}

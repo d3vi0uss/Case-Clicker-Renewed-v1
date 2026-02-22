@@ -1,0 +1,1 @@
+export default class WearSystem{constructor(config={}){this.config=config}init(){}update(){}destroy(){}sampleFloat(){const c=.25,u=Math.random(),v=Math.random();return Math.min(1,Math.max(0,(u+v)/2*c*2))}tier(f){if(f<.07)return'Factory New';if(f<.15)return'Minimal Wear';if(f<.38)return'Field-Tested';if(f<.45)return'Well-Worn';return'Battle-Scarred'}}

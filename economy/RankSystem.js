@@ -1,0 +1,1 @@
+export default class RankSystem{constructor(config={}){}init(){}update(){}destroy(){}get(level){const r=['Rookie','Contender','Challenger','Elite','Mythic'];return r[Math.min(4,Math.floor(level/20))]+' '+((level%20)+1)}}

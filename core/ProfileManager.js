@@ -1,0 +1,1 @@
+export default class ProfileManager{constructor(config={state:null}){this.state=config.state}init(){}update(){}destroy(){}export(){return JSON.stringify(this.state.get(),null,2)}import(raw){const d=JSON.parse(raw);localStorage.setItem('ccr2_state',JSON.stringify(d));location.reload()}}

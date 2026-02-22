@@ -1,0 +1,1 @@
+export default class CaseRenderer{constructor(config={}){}init(){}update(){}destroy(){}render(name){return `<svg viewBox='0 0 170 90'><rect x='15' y='24' width='140' height='52' rx='8' fill='#24253a' stroke='#7a5cff'/><rect x='20' y='16' width='130' height='20' rx='6' fill='#30314b'/><text x='85' y='54' text-anchor='middle' fill='#c084fc' font-size='12'>${name}</text></svg>`}}

@@ -1,0 +1,1 @@
+export default class PrestigeSystem{constructor(config={state:null}){this.state=config.state}init(){}update(){}destroy(){}try(){const s=this.state.get();if(s.level<50)return false;this.state.patch(st=>{st.prestige++;st.wallet=250;st.inventory=[];st.market={};st.stats.profit=0});return true}}

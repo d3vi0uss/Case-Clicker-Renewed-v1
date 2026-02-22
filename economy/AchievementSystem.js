@@ -1,0 +1,1 @@
+export default class AchievementSystem{constructor(config={state:null}){this.state=config.state;this.list=Array.from({length:60},(_,i)=>({id:'ach'+i,name:'Achievement '+(i+1),target:(i+1)*25}))}init(){}update(){}destroy(){}progress(){const s=this.state.get();return this.list.map(a=>({...a,done:s.stats.wagered>=a.target}))}}

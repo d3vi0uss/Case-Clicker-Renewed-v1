@@ -1,0 +1,1 @@
+export default class TimeUtils{constructor(config={}){this.config=config}init(){this.t0=Date.now()}update(){}destroy(){}now(){return Date.now()}daysSince(ts){return Math.floor((Date.now()-ts)/86400000)}}
